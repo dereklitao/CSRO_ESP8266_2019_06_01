@@ -1,0 +1,11 @@
+{
+    "terminal.integrated.env.windows": {
+        "PATH": "C:\\Users\\Litao\\.platformio\\penv\\Scripts;C:\\Users\\Litao\\.platformio\\penv;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\MATLAB\\R2018b\\runtime\\win64;C:\\Program Files\\MATLAB\\R2018b\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Users\\Litao\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Litao\\AppData\\Roaming\\npm;C:\\Users\\Litao\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\JetBrains\\PyCharm Community Edition 2018.3.5\\bin;;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\MATLAB\\R2018b\\runtime\\win64;C:\\Program Files\\MATLAB\\R2018b\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Users\\Litao\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Litao\\AppData\\Roaming\\npm;C:\\Users\\Litao\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\JetBrains\\PyCharm Community Edition 2018.3.5\\bin;",
+        "PLATFORMIO_CALLER": "vscode"
+    },
+    "files.associations": {
+        "csro_common.h": "c",
+        "esp_system.h": "c",
+        "nvs_flash.h": "c"
+    }
+}
