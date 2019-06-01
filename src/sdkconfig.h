@@ -6,6 +6,8 @@
  */
 //#define TEST_CASE(...)
 
+#define CONFIG_MQTT_USING_ESP 1
+
 #define CONFIG_ESP_WIFI_SSID "wifi"
 #define CONFIG_ESP_WIFI_PASSWORD "wifi"
 #define CONFIG_MAX_STA_CONN 4

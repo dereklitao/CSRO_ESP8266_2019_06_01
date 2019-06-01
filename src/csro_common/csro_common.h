@@ -2,13 +2,19 @@
 #define CSRO_COMMON_H_
 
 #include "esp_system.h"
+#include "esp_wifi.h"
+#include "esp_smartconfig.h"
+#include "event_groups.h"
 #include "nvs_flash.h"
 #include "FreeRTOS.h"
 
 #include "mqtt\esp-mqtt\include\mqtt_client.h"
+#include "sntp\sntp.h"
 
 #include "time.h"
 #include "cJSON.h"
+
+#define MQTT_BROKER "mqtt://192.168.2.2:1883"
 
 #define NLIGHT 3
 /* 
@@ -70,6 +76,8 @@ typedef struct
 
     char broker[50];
     char prefix[50];
+
+    uint8_t interval;
 } csro_mqtt;
 
 extern csro_system sysinfo;
