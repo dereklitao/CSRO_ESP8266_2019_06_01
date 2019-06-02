@@ -5,6 +5,12 @@
 #define I2C_MASTER_NUM I2C_NUM_0
 #define I2C_CHIP_RESET_IO GPIO_NUM_5
 
+#ifdef NLIGHT
+#if NLIGHT == 3
+uint8_t LED_REG_ADDR[] = {0x22, 0x20, 0x2C, 0x21, 0x23, 0x2D};
+#endif
+#endif
+
 void i2c_master_aw9523b_write(uint8_t reg_addr, uint8_t value)
 {
     i2c_cmd_handle_t cmd = i2c_cmd_link_create();
@@ -61,41 +67,18 @@ void csro_aw9523b_init(void)
 
 void csro_set_led(uint8_t led_num, uint8_t bright)
 {
-    switch (led_num)
-    {
-    case 1:
-        i2c_master_aw9523b_write(LED1_REG_ADDR, bright);
-        break;
-    case 2:
-        i2c_master_aw9523b_write(LED2_REG_ADDR, bright);
-        break;
-    case 3:
-        i2c_master_aw9523b_write(LED3_REG_ADDR, bright);
-        break;
-    case 4:
-        i2c_master_aw9523b_write(LED4_REG_ADDR, bright);
-        break;
-    case 5:
-        i2c_master_aw9523b_write(LED5_REG_ADDR, bright);
-        break;
-    case 6:
-        i2c_master_aw9523b_write(LED6_REG_ADDR, bright);
-        break;
-    default:
-        break;
-    }
+    i2c_master_aw9523b_write(LED_REG_ADDR[led_num - 1], bright);
 }
+
 void csro_start_vibrator(uint8_t period_ms)
 {
     uint8_t data = i2c_master_aw9523b_read(0x02);
-    printf("0x02 = %d\r\n", data);
     data = data | 0x03;
     i2c_master_aw9523b_write(0x02, data);
 }
 void csro_set_relay(uint8_t relay_num, bool state)
 {
     uint8_t data = i2c_master_aw9523b_read(0x02);
-    printf("0x02 = %d\r\n", data);
     if (state == true)
     {
         data = data | (0x01 << (1 + relay_num));
