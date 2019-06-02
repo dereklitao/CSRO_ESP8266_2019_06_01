@@ -6,6 +6,7 @@
     "files.associations": {
         "csro_common.h": "c",
         "esp_system.h": "c",
-        "nvs_flash.h": "c"
+        "nvs_flash.h": "c",
+        "sntp.h": "c"
     }
 }

@@ -7,6 +7,7 @@
 //#define TEST_CASE(...)
 
 #define CONFIG_MQTT_USING_ESP 1
+#define CONFIG_MQTT_PROTOCOL_311 1
 
 #define CONFIG_ESP_WIFI_SSID "wifi"
 #define CONFIG_ESP_WIFI_PASSWORD "wifi"

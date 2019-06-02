@@ -22,6 +22,7 @@ void csro_update_nlight_state(void)
     free(out);
     cJSON_Delete(state_json);
     sprintf(mqttinfo.pub_topic, "csro/%s/%s/state", sysinfo.mac_str, sysinfo.dev_type);
+    esp_mqtt_client_publish(mqtt_client, mqttinfo.pub_topic, mqttinfo.content, 0, 0, 1);
 }
 
 void csro_nlight_on_connect(esp_mqtt_client_handle_t client)
@@ -37,9 +38,7 @@ void csro_nlight_on_connect(esp_mqtt_client_handle_t client)
     }
     sprintf(mqttinfo.pub_topic, "csro/%s/%s/available", sysinfo.mac_str, sysinfo.dev_type);
     esp_mqtt_client_publish(mqtt_client, mqttinfo.pub_topic, "online", 0, 1, 1);
-
     csro_update_nlight_state();
-    esp_mqtt_client_publish(mqtt_client, mqttinfo.pub_topic, mqttinfo.content, 0, 0, 1);
 }
 
 void csro_nlight_on_message(esp_mqtt_event_handle_t event)
@@ -66,7 +65,6 @@ void csro_nlight_on_message(esp_mqtt_event_handle_t event)
     if (update)
     {
         csro_update_nlight_state();
-        esp_mqtt_client_publish(mqtt_client, mqttinfo.pub_topic, mqttinfo.content, 0, 0, 1);
     }
 }
 

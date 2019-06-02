@@ -93,7 +93,7 @@ static esp_err_t wifi_event_handler(void *ctx, system_event_t *event)
     {
         if (mqtt_task_handle == NULL)
         {
-            xTaskCreate(mqtt_task, "mqtt_task", 4096, NULL, configMAX_PRIORITIES - 5, &mqtt_task_handle);
+            xTaskCreate(mqtt_task, "mqtt_task", 4096, NULL, configMAX_PRIORITIES - 7, &mqtt_task_handle);
         }
     }
     else if (event->event_id == SYSTEM_EVENT_STA_DISCONNECTED)
@@ -110,8 +110,8 @@ static esp_err_t wifi_event_handler(void *ctx, system_event_t *event)
 
 void csro_start_mqtt(void)
 {
-    xTaskCreate(timer_task, "timer_task", 2048, NULL, 6, NULL);
     csro_system_get_info();
+    xTaskCreate(timer_task, "timer_task", 2048, NULL, 6, NULL);
     wifi_event_group = xEventGroupCreate();
     tcpip_adapter_init();
     esp_event_loop_init(wifi_event_handler, NULL);

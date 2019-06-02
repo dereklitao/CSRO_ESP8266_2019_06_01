@@ -9,6 +9,17 @@ esp_mqtt_client_handle_t mqtt_client;
 
 void csro_system_get_info(void)
 {
+#ifdef NLIGHT
+    sprintf(sysinfo.dev_type, "nlight%d", NLIGHT);
+#elif defined DLIGHT
+    sprintf(sysinfo.dev_type, "dlight");
+#elif defined RGBLIGHT
+    sprintf(sysinfo.dev_type, "rgblight");
+#elif defined MOTOR
+    sprintf(sysinfo.dev_type, "motor%d", MOTOR);
+#elif defined AIR_MONITOR
+    sprintf(sysinfo.dev_type, "airmon");
+#endif
     size_t len = 0;
     nvs_handle handle;
     nvs_open("system", NVS_READWRITE, &handle);
@@ -28,21 +39,9 @@ void csro_system_get_info(void)
     esp_wifi_get_mac(WIFI_MODE_STA, sysinfo.mac);
     sprintf(sysinfo.mac_str, MACSTR_FORMAT, sysinfo.mac[0], sysinfo.mac[1], sysinfo.mac[2], sysinfo.mac[3], sysinfo.mac[4], sysinfo.mac[5]);
     sprintf(sysinfo.host_name, "CSRO_%s", sysinfo.mac_str);
+
     sprintf(mqttinfo.id, "csro/%s", sysinfo.mac_str);
-
-#ifdef NLIGHT
-    sprintf(sysinfo.dev_type, "nlight%d", NLIGHT);
-#elif defined DLIGHT
-    sprintf(sysinfo.dev_type, "dlight");
-#elif defined RGBLIGHT
-    sprintf(sysinfo.dev_type, "rgblight");
-#elif defined MOTOR
-    sprintf(sysinfo.dev_type, "motor%d", MOTOR);
-#elif defined AIR_MONITOR
-    sprintf(sysinfo.dev_type, "airmon");
-#endif
-
     sprintf(mqttinfo.name, "csro/%s/%s", sysinfo.mac_str, sysinfo.dev_type);
     sprintf(mqttinfo.pass, PASSSTR_FORMAT, sysinfo.mac[1], sysinfo.mac[3], sysinfo.mac[5], sysinfo.mac[0], sysinfo.mac[2], sysinfo.mac[4], sysinfo.mac[5], sysinfo.mac[3], sysinfo.mac[1], sysinfo.mac[4], sysinfo.mac[2], sysinfo.mac[0]);
-    printf("id = %s.\nname = %s.\npass = %s.\n", mqttinfo.id, mqttinfo.name, mqttinfo.pass);
+    printf("\r\nid = %s.\nname = %s.\npass = %s.\r\n", mqttinfo.id, mqttinfo.name, mqttinfo.pass);
 }

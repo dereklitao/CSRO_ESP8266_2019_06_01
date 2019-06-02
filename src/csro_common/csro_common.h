@@ -14,7 +14,7 @@
 #include "time.h"
 #include "cJSON.h"
 
-#define MQTT_BROKER "mqtt://192.168.2.2:1883"
+#define MQTT_BROKER "mqtt://192.168.2.2"
 
 #define NLIGHT 3
 /* 
@@ -77,7 +77,7 @@ typedef struct
     char broker[50];
     char prefix[50];
 
-    uint8_t interval;
+    uint16_t interval;
 } csro_mqtt;
 
 extern csro_system sysinfo;
