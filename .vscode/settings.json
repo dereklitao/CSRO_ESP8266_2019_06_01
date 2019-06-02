@@ -7,6 +7,7 @@
         "csro_common.h": "c",
         "esp_system.h": "c",
         "nvs_flash.h": "c",
-        "sntp.h": "c"
+        "sntp.h": "c",
+        "i2c.h": "c"
     }
 }

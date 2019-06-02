@@ -1,4 +1,5 @@
 #include "csro_devices.h"
+#include "csro_drivers/aw9523b.h"
 
 #ifdef NLIGHT
 
@@ -7,8 +8,34 @@
 
 int light_state[3];
 
+static void nlight_task(void *pvParameters)
+{
+    while (true)
+    {
+        vTaskDelay(50 / portTICK_RATE_MS);
+        for (size_t i = 0; i < 3; i++)
+        {
+            if (light_state[i] == 1)
+            {
+                csro_set_led(2 * i + 1, 32);
+                csro_set_led(2 * i + 2, 32);
+                csro_set_relay(1 + i, true);
+            }
+            else
+            {
+                csro_set_led(2 * i + 1, 0);
+                csro_set_led(2 * i + 2, 0);
+                csro_set_relay(1 + i, false);
+            }
+        }
+    }
+    vTaskDelete(NULL);
+}
+
 void csro_nlight_init(void)
 {
+    csro_aw9523b_init();
+    xTaskCreate(nlight_task, "nlight_task", 2048, NULL, configMAX_PRIORITIES - 8, NULL);
 }
 
 void csro_update_nlight_state(void)

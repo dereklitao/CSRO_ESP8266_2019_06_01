@@ -8,6 +8,9 @@
 #include "nvs_flash.h"
 #include "FreeRTOS.h"
 
+#include "i2c.h"
+#include "gpio.h"
+
 #include "mqtt\esp-mqtt\include\mqtt_client.h"
 #include "sntp\sntp.h"
 
