@@ -17,7 +17,7 @@
 #include "time.h"
 #include "cJSON.h"
 
-#define MQTT_BROKER "mqtt://192.168.2.2"
+#define MQTT_BROKER "mqtt://192.168.2.51"
 
 #define NLIGHT 3
 /* 
